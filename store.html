@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Christian Book Store at Rhema Calvary Center - Find inspirational books and resources">
+    <title>Christian Book Store - Rhema Calvary Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body role="document">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo" role="banner"><img src="images/logo.png" alt="Rhema Calvary Center Church Logo">Rhema Calvary Center</div>
+        <div class="nav-links" role="menubar">
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+            <a href="index.html" role="menuitem">Home</a>
+            <a href="index.html#events" role="menuitem">Events</a>
+            <a href="index.html#sermons" role="menuitem">Sermons</a>
+            <a href="store.html" class="active" role="menuitem" aria-current="page">Store</a>
+            <a href="https://rhema.mychurchpay.com" role="menuitem" target="_blank" rel="noopener noreferrer">Giving</a>
+            <a href="index.html#about" role="menuitem">About</a>
+            <a href="index.html#contact" role="menuitem">Contact</a>
+        </div>
+        <button class="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+    </nav>
+
+    <section class="featured-book-section" role="region" aria-labelledby="featured-book-title">
+        <div class="featured-book-container">
+            <div class="featured-book-image">
+                <img src="images/book1.jpg" alt="The Purpose Driven Life Book Cover" loading="lazy">
+            </div>
+            <div class="featured-book-content">
+                <span class="featured-label">Featured Book</span>
+                <h2 id="featured-book-title">The Purpose Driven Life</h2>
+                <p class="featured-author">by Rick Warren</p>
+                <div class="featured-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>(4.5/5)</span>
+                </div>
+                <p class="featured-description">Discover your purpose and live a life of meaning through this transformative bestseller. This book has helped millions of readers understand God's incredible plan for their lives.</p>
+                <div class="featured-price">GHS 249.99</div>
+                <div class="featured-actions">
+                    <button class="purchase-btn" onclick="addToCart('purpose-driven-life', 'The Purpose Driven Life', 249.99)" aria-label="Add The Purpose Driven Life to cart">Add to Cart</button>
+                    <button class="buy-now-btn" onclick="buyNow('purpose-driven-life', 'The Purpose Driven Life', 249.99)" aria-label="Buy The Purpose Driven Life now">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="marketplace-section" role="region" aria-labelledby="marketplace-title">
+        <h2 id="marketplace-title">Christian Book Store</h2>
+        <div class="store-controls">
+            <div class="search-bar">
+                <input type="text" id="searchBooks" placeholder="Search books..." aria-label="Search books">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="category-filter">
+                <select id="categoryFilter" aria-label="Filter by category">
+                    <option value="all">All Categories</option>
+                    <option value="devotional">Devotional</option>
+                    <option value="theology">Theology</option>
+                    <option value="christian-living">Christian Living</option>
+                    <option value="bible-study">Bible Study</option>
+                </select>
+            </div>
+            <div class="sort-options">
+                <select id="sortBooks" aria-label="Sort books">
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name-asc">Name: A to Z</option>
+                </select>
+            </div>
+        </div>
+        <div class="book-grid">
+            <div class="book-card" role="article">
+                <img src="images/book1.jpg" alt="Purpose Driven Life Book Cover" class="book-cover" loading="lazy">
+                <div class="book-info">
+                    <h3>The Purpose Driven Life</h3>
+                    <p class="author">by Rick Warren</p>
+                     <p class="description">Discover your purpose and live a life of meaning through this transformative bestseller.</p>
+                    <div class="book-price">GHS 249.99</div>
+                    <div class="book-actions">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.5/5)</span>
+                        </div>
+                        <button class="purchase-btn" onclick="addToCart('purpose-driven-life', 'The Purpose Driven Life', 249.99)" aria-label="Add The Purpose Driven Life to cart">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('purpose-driven-life', 'The Purpose Driven Life', 249.99)" aria-label="Buy The Purpose Driven Life now">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card" role="article">
+                <img src="images/book2.jpg" alt="Battlefield of the Mind Book Cover" class="book-cover" loading="lazy">
+                <div class="book-info">
+                    <h3>Battlefield of the Mind</h3>
+                    <p class="author">by Joyce Meyer</p>
+                    <p class="description">Learn to win the battle in your mind and transform your thoughts.</p>
+                    <div class="book-price">GHS 212.99</div>
+                    <div class="book-actions">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0/5)</span>
+                        </div>
+                        <button class="purchase-btn" onclick="addToCart('battlefield-of-mind', 'Battlefield of the Mind', 212.99)" aria-label="Add Battlefield of the Mind to cart">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('battlefield-of-mind', 'Battlefield of the Mind', 212.99)" aria-label="Buy Battlefield of the Mind now">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card" role="article">
+                <img src="images/book3.jpg" alt="Mere Christianity Book Cover" class="book-cover" loading="lazy">
+                <div class="book-info">
+                    <h3>Mere Christianity</h3>
+                    <p class="author">by C.S. Lewis</p>
+                    <p class="description">A timeless defense of the Christian faith that speaks to modern readers.</p>
+                    <div class="book-price">GHS 187.99</div>
+                    <div class="book-actions">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(5.0/5)</span>
+                        </div>
+                        <button class="purchase-btn" onclick="addToCart('mere-christianity', 'Mere Christianity', 187.99)" aria-label="Add Mere Christianity to cart">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('mere-christianity', 'Mere Christianity', 187.99)" aria-label="Buy Mere Christianity now">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card" role="article">
+                <img src="images/book4.jpg" alt="The Case for Christ Book Cover" class="book-cover" loading="lazy">
+                <div class="book-info">
+                    <h3>The Case for Christ</h3>
+                    <p class="author">by Lee Strobel</p>
+                    <p class="description">A journalist's personal investigation of the evidence for Jesus.</p>
+                    <div class="book-price">GHS 199.99</div>
+                    <div class="book-actions">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.5/5)</span>
+                        </div>
+                        <button class="purchase-btn" onclick="addToCart('case-for-christ', 'The Case for Christ', 199.99)" aria-label="Add The Case for Christ to cart">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('case-for-christ', 'The Case for Christ', 199.99)" aria-label="Buy The Case for Christ now">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card" role="article">
+                <img src="images/bishop.jpg" alt="The Power of Faith Book Cover" class="book-cover" loading="lazy">
+                <div class="book-info">
+                    <h3>The Power of Faith</h3>
+                    <p class="author">by Bishop Ewusie Brookman</p>
+                    <p class="description">A powerful exploration of faith and its transformative impact on our spiritual journey.</p>
+                    <div class="book-price">GHS 237.99</div>
+                    <div class="book-actions">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(5.0/5)</span>
+                        </div>
+                        <button class="purchase-btn" onclick="addToCart('power-of-faith', 'The Power of Faith', 237.99)" aria-label="Add The Power of Faith to cart">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('power-of-faith', 'The Power of Faith', 237.99)" aria-label="Buy The Power of Faith now">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card" role="article">
+                <img src="images/bishop.jpg" alt="Walking in Divine Purpose Book Cover" class="book-cover" loading="lazy">
+                <div class="book-info">
+                    <h3>Walking in Divine Purpose</h3>
+                    <p class="author">by Bishop Ewusie Brookman</p>
+                    <p class="description">Discover God's purpose for your life and learn how to walk in it with confidence and authority.</p>
+                    <div class="book-price">GHS 224.99</div>
+                    <div class="book-actions">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.5/5)</span>
+                        </div>
+                        <button class="purchase-btn" onclick="addToCart('divine-purpose', 'Walking in Divine Purpose', 224.99)" aria-label="Add Walking in Divine Purpose to cart">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('divine-purpose', 'Walking in Divine Purpose', 224.99)" aria-label="Buy Walking in Divine Purpose now">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter-section" role="region" aria-labelledby="newsletter-title">
+        <div class="newsletter-container">
+            <div class="newsletter-content">
+                <h2 id="newsletter-title">Subscribe to Our Newsletter</h2>
+                <p>Stay updated with our latest books, special offers, and spiritual resources.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); subscribeNewsletter();">
+                    <div class="form-group">
+                        <input type="email" id="newsletter-email" placeholder="Your email address" required aria-required="true">
+                        <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="newsletter-consent" required aria-required="true">
+                        <label for="newsletter-consent">I agree to receive emails from Rhema Calvary Center</label>
+                    </div>
+                </form>
+            </div>
+            <div class="newsletter-image">
+                <img src="images/book3.jpg" alt="Christian books collection" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Church Street, City, State 12345</p>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@rhemacalvarycenter.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="index.html#events">Events</a>
+                <a href="index.html#sermons">Sermons</a>
+                <a href="store.html">Store</a>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Rhema Calvary Center. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="modal" role="dialog" aria-labelledby="cart-title" aria-hidden="true">
+        <div class="modal-content">
+            <h3 id="cart-title">Shopping Cart</h3>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-amount">GHS 0.00</span>
+            </div>
+            <div class="cart-buttons">
+                <button onclick="closeCart()" class="secondary-btn">Continue Shopping</button>
+                <button onclick="checkout()" class="primary-btn">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="db.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
